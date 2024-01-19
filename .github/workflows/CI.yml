@@ -68,7 +68,7 @@ jobs:
         run: echo "OSCAR_TEST_SUBSET=${{matrix.group}}" >> $GITHUB_ENV
       - name: "pin flint"
         run: |
-          julia --color=yes --depwarn=no --inline=yes --project=@. -e "using Pkg; Pkg.add(name=\"FLINT_jll\", version=\"200.900.7\"); Pkg.pin(\"FLINT_jll\");"
+          julia --color=yes --depwarn=no --inline=yes --project=@. -e "using Pkg; Pkg.add(name=\"FLINT_jll\", version=\"200.900.8\"); Pkg.pin(\"FLINT_jll\");"
       - name: "Run tests"
         uses: julia-actions/julia-runtest@latest
         with:
@@ -102,6 +102,8 @@ jobs:
             os: macOS-latest
           - julia-version: '1.10'
             os: macOS-latest
+          - julia-version: '1.9'
+            os: macOS-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -128,7 +130,7 @@ jobs:
           julia --project=docs --color=yes -e '
             using Pkg
             Pkg.develop(PackageSpec(path=pwd()))
-            Pkg.add(name="FLINT_jll", version="200.900.7"); Pkg.pin("FLINT_jll");
+            Pkg.add(name="FLINT_jll", version="200.900.8"); Pkg.pin("FLINT_jll");
             Pkg.instantiate()'
       - name: "Run doctests"
         run: |
